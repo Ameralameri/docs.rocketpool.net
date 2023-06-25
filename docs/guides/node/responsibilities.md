@@ -1,6 +1,6 @@
 # A Node Operator's Responsibilities
 
-## How Ethereum Staking Works
+## How Ethereum GoodStaking Works
 
 As a reminder, staking in Proof of Stake is done via **validators**.
 A validator is essentially a single Beacon Chain address to which 32 ETH was deposited on the Execution layer.
