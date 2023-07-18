@@ -24,7 +24,7 @@ The minimum RPL stake is **2.4 ETH worth of RPL** (10% of 24), and the maximum i
 If choosing **16 ETH** you stake 16 of your own ETH and borrow 16 ETH from the staking pool to complete the validator.
 The minimum RPL stake is **1.6 ETH worth of RPL** (10% of 16), and the maximum is **24 ETH worth of RPL** (150% of 16).
 
-In the event that the RPL/ETH ratio causes your stake to be less than the required stake, you will **not** be able to claim RPL rewards during that staking period. However, your minipool(s) will continue to earn commission. You can rectify this by staking more RPL or simply waiting to see if the ratio becomes favorable again. 
+In the event that the RPL/ETH ratio causes your stake to be less than the required stake, you will **not** be able to claim RPL rewards during that staking period. However, your minipool(s) will continue to earn commission. You can rectify this by staking more RPL or simply waiting to see if the ratio becomes favorable again.
 
 ### Rewards
 
@@ -107,11 +107,27 @@ Select which network you're using from the tabs below to be taken to it:
 ::::::
 
 Start by connecting your wallet to the website using MetaMask, WalletConnect, or any of the other methods the website supports.
-You will then be presented with this dialog:
+You will then be presented with this dialog to look up your node address:
 
-![](./images/stake-behalf-1.png){ style="display: block; margin: 0 auto" }
+![](./images/stake-behalf-0.jpg){ style="display: block; margin: 0 auto" }
+
+Enter your node address & click "Lookup".
+
+**Make sure you have the correct node address before doing this!**
+If you need to confirm your node's address, you can quickly retrieve it via the CLI using the `rocketpool node status` command.
+
+This will check that the address is a registered node & that the node has whitelisted the connected wallet. Withdrawal addresses are whitelisted by default, however if you wish to allow other addresses you will need to whitelist them via the following command on your node.
+
+```bash
+rocketpool node add-address-to-stake-rpl-whitelist address-or-ens
+```
+
+Once you have passed the checks, you will be presented with the next step.
+
+![](./images/stake-behalf-1.jpg){ style="display: block; margin: 0 auto" }
 
 This is a two-step process.
+
 First, enter the amount of RPL you want to stake and click `Approve` - this will **approve** the staking contract to access that much RPL in your wallet, but **no more than that amount**.
 
 ::: tip TIP
@@ -120,11 +136,9 @@ You can approve more than the amount you intend to stake if you trust the Rocket
 
 Once the RPL is approved, you will see this dialog:
 
-![](./images/stake-behalf-2.png){ style="display: block; margin: 0 auto" }
+![](./images/stake-behalf-2.jpg){ style="display: block; margin: 0 auto" }
 
 Enter the amount of RPL you want to stake in the `Stake RPL` box, and enter your node's address in the `on behalf of Node Address` box.
-**Make sure you have the correct node address before doing this!**
-If you need to confirm your node's address, you can quickly retrieve it via the CLI using the `rocketpool node status` command.
 
 When you've entered that information, press the `Stake` button and approve the transaction.
 It will be sent to the Ethereum network, and once included in a block, you're all set!
@@ -185,7 +199,6 @@ The node has a total stake of 300.000000 RPL and an effective stake of 300.00000
 This is currently 29.76% of its borrowed ETH and 89.29% of its bonded ETH.
 It must keep at least 100.794305 RPL staked to claim RPL rewards (10% of borrowed ETH).
 It can earn rewards on up to 503.971526 RPL (150% of bonded ETH).
-
 The node has enough RPL staked to make 1 more 8-ETH minipools (or 2 more 16-ETH minipools).
 ```
 
@@ -223,10 +236,8 @@ Here is a complete example of the process:
 
 ```
 $ rocketpool minipool find-vanity-address
-
 Please specify the address prefix you would like to search for (must start with 0x):
 0xa77e57
-
 Running with 12 threads.
 Found on thread 3: salt 0x5cd7fb = 0xA77E57c892C9e98B0B81289e4AfdA62fb59c5DDD
 Finished in 1.91145873s
@@ -288,7 +299,6 @@ You will first see a note that depositing a new minipool will **automatically di
 
 ```
 Your eth2 client is on the correct network.
-
 NOTE: by creating a new minipool, your node will automatically claim and distribute any balance you have in your fee distributor contract. If you don't want to claim your balance at this time, you should not create a new minipool.
 Would you like to continue? [y/n]
 ```
@@ -322,11 +332,8 @@ Your consensus client is synced, you may safely create a minipool.
 | 3 Minutes     | 7 gwei    | 0.0100 to 0.0150 ETH |
 | >10 Minutes   | 6 gwei    | 0.0080 to 0.0120 ETH |
 +==================================================+
-
 These prices include a maximum priority fee of 2.00 gwei.
 Please enter your max fee (including the priority fee) or leave blank for the default of 10 gwei:
-
-
 Using a max fee of 10.00 gwei and a priority fee of 2.00 gwei.
 You are about to deposit 8.000000 ETH to create a minipool with a minimum possible commission rate of 14.000000%.
 ARE YOU SURE YOU WANT TO DO THIS? Exiting this minipool and retrieving your capital cannot be done until:
@@ -336,18 +343,14 @@ ARE YOU SURE YOU WANT TO DO THIS? Exiting this minipool and retrieving your capi
 - Your minipool has been upgraded to use the Atlas delegate
  [y/n]
 y
-
 Creating minipool...
 Transaction has been submitted with hash <transaction hash>.
 You may follow its progress by visiting:
 <link to transaction>
-
 Waiting for the transaction to be included in a block... you may wait here for it, or press CTRL+C to exit and return to the terminal.
-
 The node deposit of 8.000000 ETH was made successfully!
 Your new minipool's address is: <new minipool address>
 The validator pubkey is: <new validator public key>
-
 Your minipool is now in Initialized status.
 Once the remaining ETH has been assigned to your minipool from the staking pool, it will move to Prelaunch status.
 After that, it will move to Staking status once 1h0m0s have passed.
@@ -375,9 +378,7 @@ For example, when it has moved into `prelaunch`, you will likely see something l
 
 ```
 1 Prelaunch minipool(s):
-
 --------------------
-
 Address:              <your minipool address>
 Penalties:             0
 Status updated:        2023-03-31, 04:51 +0000 UTC
@@ -396,15 +397,10 @@ Use latest delegate:   no
 Delegate address:      <your delegate address>
 Rollback delegate:     <none>
 Effective delegate:    <your delegate address>
-
-
 0 finalized minipool(s):
-
-
-
 ```
 
-After this prelaunch period, your minipool will enter `staking` status and send the additional 16 ETH from the staking pool to the deposit contract.
+After this prelaunch period, your minipool will enter `staking` status and send the additional ETH from the staking pool to the deposit contract.
 This will be done by the `rocketpool_node` Docker container (or the `rp-node` service if you used the Native setup) - if, for some reason, you are taking abnormally long to enter `staking` status, looking at the logs for this container / service will likely tell you what's wrong.
 You can check these logs with the `rocketpool service logs node` command (or `/srv/rocketpool/node_log.sh` on Native mode setups).
 
@@ -412,11 +408,8 @@ Running `rocketpool minipool status` will then show something like this:
 
 ```
 $ rocketpool minipool status
-
 1 Staking minipool(s):
-
 --------------------
-
 Address:              <your validator address>
 Penalties:             0
 RP ETH assigned:       2023-03-31, 05:53 +0000 UTC
@@ -437,11 +430,14 @@ Use latest delegate:  no
 Delegate address:     <your delegate address>
 Rollback delegate:    <none>
 Effective delegate:   <your delegate address>
-
-
 0 finalized minipool(s):
-
 ```
+
+::: warning NOTE
+The transaction to migrate from `prelaunch` to `staking` is submitted automatically by your node and is subject to the gas settings in `rocketpool service config`.
+If the gas settings prevent the node from submitting the transaction, or there is insufficient ETH in the node wallet to pay for the transaction, the minipool will become `dissolved` two weeks after it entered `prelaunch`.
+If this happens, retrieving the balance is a costly and lengthy process, so make sure to monitor your minipool closely until it reaches `staking` status!
+:::
 
 Once the Beacon Chain accepts both of the deposits (one from you and one from the staking pool), your validator will enter the Beacon Chain queue where it will wait for its turn to become activated and start staking.
 

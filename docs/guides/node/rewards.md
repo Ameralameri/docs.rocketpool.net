@@ -52,14 +52,14 @@ This means if you have a single minipool that you deposited 16 ETH into, you mus
 The `rocketpool node status` command will show you your current collateralization ratio.
 
 If you are below 10% during the checkpoint, **you will not be eligible for any rewards for that interval.**
-**Even if you increase above 10% at a later date, you will not have any rewards to claim for that interval.**
-Therefore it is **crucial** that you maintain at least 10% collateral at all times.
+** Even if you increase above 10% at a later date, you will not have any rewards to claim for that interval.**
+Therefore it is **crucial** that you maintain at least 10% collateral at the time when each RPL reward checkpoint is reached.
 :::
 
 ### Smoothing Pool ETH Rewards
 
 Along with RPL rewards, the Smoothing Pool's entire ETH balance is distributed during rewards checkpoints.
-Half of it (minus the average node commission) will be sent to the rETH contract where it can be burned for ETH from pool stakers that want to exit or used to create more minipools.
+Out of the entire Smoothing Pool's rewards balance, the percentage which corresponds to pool stakers (50% for 16 ETH minipools, or 75% for LEB8s), minus the respective node commission, will be sent to the rETH contract. There it can either 1) be burned for ETH from pool stakers that want to exit, or 2) be used to create more minipools. 
 The remaining portion will be distributed amongst the eligible node operators.
 
 Nodes that are opted into the smoothing pool for the interval, even if only part of the time, are eligible for a portion of the Smoothing Pool's total balance.
